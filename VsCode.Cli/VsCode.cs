@@ -192,13 +192,15 @@ public static class VsCode
         var startInfo = new ProcessStartInfo
         {
             FileName = ShellPath,
-            Arguments = "--version",
+            Arguments = Parameters.Version,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
         };
-        var proc = Process.Start(startInfo);
-        var versionOutput = proc.StandardOutput.ReadToEnd();
+        if (Process.Start(startInfo) is not { } process)
+            throw new InvalidOperationException();
+
+        var versionOutput = process.StandardOutput.ReadToEnd();
         var lines = versionOutput.Split('\r', '\n');
 
         version = lines[0];
