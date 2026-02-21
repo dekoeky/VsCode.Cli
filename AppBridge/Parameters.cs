@@ -1,4 +1,4 @@
-﻿namespace dekoeky;
+﻿namespace Dekoeky.AppBridge;
 
 internal static class Parameters
 {

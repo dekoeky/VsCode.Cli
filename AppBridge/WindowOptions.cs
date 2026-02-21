@@ -1,4 +1,4 @@
-﻿namespace dekoeky;
+﻿namespace Dekoeky.AppBridge;
 
 public enum WindowOptions
 {

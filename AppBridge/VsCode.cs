@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.Versioning;
 
-namespace dekoeky;
+namespace Dekoeky.AppBridge;
 
 /// <summary>
 /// VsCode Utility class that allows with interactions with (possible) VsCode installation.
