@@ -34,18 +34,9 @@ public static class VsCodeCli
     }
 
     private static IEnumerable<string> TypicalPaths()
-    {
-        if (OperatingSystem.IsWindows())
-        {
-            foreach (var path in TypicalPathsWindows())
-                yield return path;
-        }
-        else if (OperatingSystem.IsLinux())
-        {
-            foreach (var path in TypicalPathsLinux())
-                yield return path;
-        }
-    }
+        => OperatingSystem.IsWindows() ? TypicalPathsWindows()
+        : OperatingSystem.IsLinux() ? TypicalPathsLinux()
+        : [];
 
     /// <summary>
     /// Find VsCode installation path from typical installation paths.
