@@ -4,13 +4,13 @@
     <TargetFrameworks>net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyTitle>dekoeky.VsCode.Cli</AssemblyTitle>
-    <AssemblyName>dekoeky.VsCode.Cli</AssemblyName>
-    <RootNamespace>dekoeky</RootNamespace>
+    <AssemblyTitle>Dekoeky.AppBridge</AssemblyTitle>
+    <AssemblyName>Dekoeky.AppBridge</AssemblyName>
+    <RootNamespace>Dekoeky.AppBridge</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="VsCode.Cli.Tests" />
+    <InternalsVisibleTo Include="AppBridge.Tests" />
   </ItemGroup>
 
 </Project>

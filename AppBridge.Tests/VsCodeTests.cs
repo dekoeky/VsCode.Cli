@@ -20,6 +20,7 @@ public class VsCodeTests
         Assert.IsFalse(string.IsNullOrEmpty(installPath));
     }
 
+    [TestCategory("Explicit")]
     [TestMethod]
     [DataRow("testfiles/csv/people1.csv")]                                                          // Open 1 file
     [DataRow("testfiles/csv/people1.csv", "testfiles/csv/people2.csv")]                             // Open 2 files, same dir
