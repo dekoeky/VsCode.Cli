@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VsCode.Cli\VsCode.Cli.csproj" />
+    <ProjectReference Include="..\AppBridge\AppBridge.csproj" />
   </ItemGroup>
 
   <ItemGroup>
