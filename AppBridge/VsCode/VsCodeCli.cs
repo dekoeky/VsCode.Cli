@@ -1,14 +1,15 @@
 ﻿using System.Diagnostics;
 using System.Runtime.Versioning;
 
-namespace Dekoeky.AppBridge;
+namespace Dekoeky.AppBridge.VsCode;
 
 /// <summary>
 /// VsCode Utility class that allows with interactions with (possible) VsCode installation.
 /// </summary>
+/// <seealso href="https://code.visualstudio.com/docs/configure/command-line"/>
 [SupportedOSPlatform("windows")]
 [SupportedOSPlatform("linux")]
-public static class VsCode
+public static class VsCodeCli
 {
     #region Installation Checking
 
@@ -95,7 +96,7 @@ public static class VsCode
     private static readonly string ShellPath;
 
 
-    static VsCode()
+    static VsCodeCli()
     {
         Installed = IsInstalledInTypicalInstallationPath(out InstallPath);
 

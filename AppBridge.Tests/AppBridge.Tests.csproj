@@ -5,19 +5,21 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<RootNamespace>dekoeky</RootNamespace>
+    <AssemblyTitle>Dekoeky.AppBridge.Tests</AssemblyTitle>
+    <AssemblyName>Dekoeky.AppBridge.Tests</AssemblyName>
+    <RootNamespace>Dekoeky.AppBridge</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="testfiles\c#\Goodbye.cs" />
-    <Compile Remove="testfiles\c#\Greeting.cs" />
+    <Compile Remove="TestData\c#\Goodbye.cs" />
+    <Compile Remove="TestData\c#\Greeting.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="testfiles\c#\Goodbye.cs">
+    <None Include="TestData\c#\Goodbye.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="testfiles\c#\Greeting.cs">
+    <None Include="TestData\c#\Greeting.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -35,13 +37,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="testfiles\csv\cars.csv">
+    <None Update="TestData\csv\cars.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="testfiles\csv\people1.csv">
+    <None Update="TestData\csv\people1.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="testfiles\csv\people2.csv">
+    <None Update="TestData\csv\people2.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

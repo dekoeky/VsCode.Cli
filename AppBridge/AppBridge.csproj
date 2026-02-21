@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="AppBridge.Tests" />
+    <InternalsVisibleTo Include="Dekoeky.AppBridge.Tests" />
   </ItemGroup>
 
 </Project>
