@@ -39,5 +39,13 @@ internal static class WinmergeCliParameters
     /// </summary>
     public const string SingleInstance = "/s";
 
+    /// <summary>
+    /// Starts WinMerge as a minimized window. This option can be useful during lengthy compares.
+    /// </summary>
+    public const string Minimized = "/minimize";
 
+    /// <summary>
+    /// Starts WinMerge as a maximized window.
+    /// </summary>
+    public const string Maximized = "/maximize";
 }

@@ -76,10 +76,42 @@ public static class WinmergeCli
     /// </summary>
     public static void Open()
     {
-        // Validate VsCode Installation
         ThrowIfNotInstalled();
 
         Process.Start(InstallPath, string.Empty);
+    }
+
+    public static async Task<ExitCodes> CompareAsync(string leftPath, string rightPath, CancellationToken ct = default)
+    {
+        ThrowIfNotInstalled();
+
+        if (string.IsNullOrWhiteSpace(leftPath)) throw new ArgumentException("Path should not be empty", nameof(leftPath));
+        if (string.IsNullOrWhiteSpace(rightPath)) throw new ArgumentException("Path should not be empty", nameof(rightPath));
+
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = InstallPath,
+            ArgumentList = {
+                WinmergeCliParameters.EnableExitCode,
+                WinmergeCliParameters.NonInteractive,
+                WinmergeCliParameters.Minimized,
+                leftPath,
+                rightPath,
+                //OutputPath,
+            },
+        };
+
+        // Using -> Immediately release the unmanaged resources, without killing the process
+        using var process = Process.Start(startInfo);
+
+        await process.WaitForExitAsync(ct);
+
+        return (ExitCodes)process.ExitCode;
+    }
+
+    public static void Compare(string leftPath, string middlePath, string rightPath)
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>

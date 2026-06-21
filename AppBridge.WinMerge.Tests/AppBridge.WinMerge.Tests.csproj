@@ -13,10 +13,14 @@
   <ItemGroup>
     <Compile Remove="TestData\c#\Goodbye.cs" />
     <Compile Remove="TestData\c#\Greeting.cs" />
+    <Compile Remove="TestData\c#\GreetingIdentical.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="TestData\c#\Goodbye.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\c#\GreetingIdentical.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\c#\Greeting.cs">

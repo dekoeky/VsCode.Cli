@@ -9,7 +9,7 @@ namespace Dekoeky.AppBridge.Tests;
 [TestClass]
 [SupportedOSPlatform("windows")]
 [OSCondition(ConditionMode.Include, OperatingSystems.Windows, IgnoreMessage = "Not Supported On This OS")]
-public class WinmergeCliTests
+public partial class WinmergeCliTests
 {
     [TestMethod]
     public void IsInstalledInTypicalInstallationPath()
@@ -31,30 +31,39 @@ public class WinmergeCliTests
         WinmergeCli.Open();
     }
 
-    //[TestCategory("Explicit")]
-    //[TestMethod]
-    //[LocalTestDataFile($"csv/people1.csv")]                                                 // Open 1 file
-    //[LocalTestDataFile($"csv/people1.csv", $"csv/people2.csv")]                             // Open 2 files, same dir
-    //[LocalTestDataFile($"csv/people1.csv", $"csv/people2.csv", "testfiles/csv/cars.csv")]   // Open 3 files, same dir
-    //[LocalTestDataFile($"csv/people1.csv", $"c#/Greeting.cs")]                              // Open 2 files, different dir
-    //[LocalTestDataFile($"csv")]                                                             // Open 1 directory
-    //[LocalTestDataFile($"csv", $"c#")]                                                      // Open 2 directories
-    //public void Open(params string[] paths)
-    //{
-    //    Console.WriteLine(string.Join(Environment.NewLine, paths));
+    [TestMethod]
+    [DataRow("TestData/csv/People1.csv", "TestData/csv/People2.csv", ExitCodes.Different)]
+    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/Goodbye.cs", ExitCodes.Different)]
+    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/GreetingIdentical.cs", ExitCodes.Identical)]
+    public async Task CompareFileAsync(string file1, string file2, ExitCodes expected)
+    {
+        // Arrange
+        Assert.That.FileExists(file1);
+        Assert.That.FileExists(file2);
 
-    //    // Act
-    //    WinmergeCli.Open(paths);
-    //}
+        // Act
+        var result = await WinmergeCli.CompareAsync(file1, file2, TestContext.CancellationToken);
 
-    //[TestMethod]
-    //[LocalTestDataFile("csv/People1.csv", "csv/People2.csv")]
-    //[LocalTestDataFile("c#/Greeting.cs", "c#/Goodbye.cs")]
-    //public void Diff(string file1, string file2)
-    //{
-    //    // Act
-    //    VsCodeCli.Diff(file1, file2);
-    //}
+        // Assert
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    [DataRow("TestData/csv", "TestData/csv", ExitCodes.Identical)]
+    [DataRow("TestData/csv", "TestData/c#", ExitCodes.Different)]
+    [DataRow("TestData/c#", "TestData/c#", ExitCodes.Identical)]
+    public async Task CompareDirectoryAsync(string dir1, string dir2, ExitCodes expected)
+    {
+        // Arrange
+        Assert.That.DirectoryExists(dir1);
+        Assert.That.DirectoryExists(dir2);
+
+        // Act
+        var result = await WinmergeCli.CompareAsync(dir1, dir2, TestContext.CancellationToken);
+
+        // Assert
+        Assert.AreEqual(expected, result);
+    }
 
     [TestMethod]
     public void Version()
@@ -73,4 +82,6 @@ public class WinmergeCliTests
         // Act
         WinmergeCli.LaunchHelp();
     }
+
+    public TestContext TestContext { get; set; }
 }
