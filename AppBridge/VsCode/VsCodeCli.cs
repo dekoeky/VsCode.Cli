@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Runtime.Versioning;
 
 namespace Dekoeky.AppBridge.VsCode;
@@ -125,7 +125,7 @@ public static class VsCodeCli
     /// </summary>
     /// <param name="windowOptions"></param>
     /// <param name="paths">The paths of the files and/or folders to open.</param>
-    public static void Open(WindowOptions windowOptions, params string[] paths)
+    public static void Open(VsCodeWindowOptions windowOptions, params string[] paths)
     {
         // Validate Arguments
         ArgumentNullException.ThrowIfNull(paths);
@@ -144,8 +144,8 @@ public static class VsCodeCli
 
         var options = windowOptions switch
         {
-            WindowOptions.NewWindow => Parameters.NewWindow,
-            WindowOptions.ReUseWindow => Parameters.ReUseWindow,
+            VsCodeWindowOptions.NewWindow => VsCodeParameters.NewWindow,
+            VsCodeWindowOptions.ReUseWindow => VsCodeParameters.ReUseWindow,
         };
 
         var total = options + arguments;
@@ -184,7 +184,7 @@ public static class VsCodeCli
         var startInfo = new ProcessStartInfo
         {
             FileName = ShellPath,
-            Arguments = Parameters.Version,
+            Arguments = VsCodeParameters.Version,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
@@ -209,7 +209,7 @@ public static class VsCodeCli
         var startInfo = new ProcessStartInfo
         {
             FileName = ShellPath,
-            Arguments = Parameters.Help,
+            Arguments = VsCodeParameters.Help,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,

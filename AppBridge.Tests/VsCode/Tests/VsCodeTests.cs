@@ -1,4 +1,4 @@
-﻿using Dekoeky.AppBridge.TestData;
+using Dekoeky.AppBridge.TestData;
 using System.Runtime.Versioning;
 
 namespace Dekoeky.AppBridge.VsCode.Tests;
@@ -36,7 +36,7 @@ public class VsCodeCliTests
     {
         Console.WriteLine(string.Join(Environment.NewLine, paths));
         // Act
-        VsCodeCli.Open(WindowOptions.NewWindow, paths);
+        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, paths);
     }
 
     [TestMethod]
