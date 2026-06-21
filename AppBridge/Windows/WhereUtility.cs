@@ -43,12 +43,9 @@ public static class WhereUtility
         var stderr = proc.StandardError.ReadToEnd();
         proc.WaitForExit();
 
-        var lines = stdout
-            .Split(NewLineChars, StringSplitOptions.RemoveEmptyEntries);
-
         var matches = new List<string>();
 
-        foreach (var line in lines)
+        foreach (var line in stdout.EnumerateLines())
         {
             // Remove quotes if /f was used
             var cleaned = line.Trim().Trim('"');
@@ -58,11 +55,13 @@ public static class WhereUtility
             {
                 var firstSpace = cleaned.IndexOf(' ');
                 if (firstSpace > 0)
-                    cleaned = cleaned.Substring(0, firstSpace);
+                    cleaned = cleaned[..firstSpace];
             }
 
-            if (File.Exists(cleaned) || Directory.Exists(cleaned))
-                matches.Add(cleaned);
+            var cleanedStr = cleaned.ToString();
+
+            if (File.Exists(cleanedStr) || Directory.Exists(cleanedStr))
+                matches.Add(cleanedStr);
         }
 
         var exitCode = (ExitCode)proc.ExitCode;
