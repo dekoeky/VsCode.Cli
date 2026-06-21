@@ -1,8 +1,10 @@
-﻿namespace Dekoeky.AppBridge.Windows;
+namespace Dekoeky.AppBridge.Windows;
 
 public enum ExitCode
 {
-    AtLeastOneMatch = 0,
-    NoMatches = 1,
-    SyntaxError = 2,
+    // Note: See where.exe /? output for exit codes
+
+    Successful = 0,
+    Unsuccessful = 1,
+    Failure = 2,
 }

@@ -1,4 +1,4 @@
-﻿using System.Runtime.Versioning;
+using System.Runtime.Versioning;
 
 namespace Dekoeky.AppBridge.Windows.Tests;
 
@@ -23,6 +23,6 @@ public class WhereUtilityTests
         // Assert
         Assert.IsTrue(result.Success);
         Assert.IsNull(result.Error);
-        Assert.AreEqual(ExitCode.AtLeastOneMatch, result.ExitCode);
+        Assert.AreEqual(ExitCode.Successful, result.ExitCode);
     }
 }

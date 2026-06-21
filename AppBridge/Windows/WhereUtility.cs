@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Runtime.Versioning;
 
 namespace Dekoeky.AppBridge.Windows;
@@ -69,7 +69,7 @@ public static class WhereUtility
 
         return new WhereResult
         {
-            Success = exitCode == ExitCode.AtLeastOneMatch,
+            Success = exitCode == ExitCode.Successful,
             Matches = matches,
             Error = stderr.Length > 0 ? stderr : null,
             ExitCode = exitCode,
