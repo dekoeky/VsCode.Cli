@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
     <EnableMSTestRunner>true</EnableMSTestRunner>
     <OutputType>Exe</OutputType>
-    <AssemblyTitle>Dekoeky.AppBridge.WinMerge.Tests</AssemblyTitle>
-    <AssemblyName>Dekoeky.AppBridge.WinMerge.Tests</AssemblyName>
+    <AssemblyTitle>Dekoeky.AppBridge.Linux.Tests</AssemblyTitle>
+    <AssemblyName>Dekoeky.AppBridge.Linux.Tests</AssemblyName>
     <RootNamespace>Dekoeky.AppBridge</RootNamespace>
   </PropertyGroup>
 
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppBridge.WinMerge\AppBridge.WinMerge.csproj" />
+    <ProjectReference Include="..\AppBridge.Linux\AppBridge.Linux.csproj" />
     <ProjectReference Include="..\SharedTestData\SharedTestData.csproj" />
   </ItemGroup>
 
