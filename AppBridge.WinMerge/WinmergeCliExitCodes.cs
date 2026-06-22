@@ -1,6 +1,6 @@
 namespace Dekoeky.AppBridge;
 
-public enum ExitCodes
+public enum WinmergeCliExitCodes
 {
     Identical = 0,
     Different = 1,

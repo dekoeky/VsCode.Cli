@@ -81,7 +81,7 @@ public static class WinmergeCli
         Process.Start(InstallPath, string.Empty);
     }
 
-    public static async Task<ExitCodes> CompareAsync(string leftPath, string rightPath, CancellationToken ct = default)
+    public static async Task<WinmergeCliExitCodes> CompareAsync(string leftPath, string rightPath, CancellationToken ct = default)
     {
         ThrowIfNotInstalled();
 
@@ -106,7 +106,7 @@ public static class WinmergeCli
 
         await process.WaitForExitAsync(ct);
 
-        return (ExitCodes)process.ExitCode;
+        return (WinmergeCliExitCodes)process.ExitCode;
     }
 
     public static void Compare(string leftPath, string middlePath, string rightPath)

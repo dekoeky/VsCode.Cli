@@ -32,10 +32,10 @@ public partial class WinmergeCliTests
     }
 
     [TestMethod]
-    [DataRow("TestData/csv/People1.csv", "TestData/csv/People2.csv", ExitCodes.Different)]
-    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/Goodbye.cs", ExitCodes.Different)]
-    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/GreetingIdentical.cs", ExitCodes.Identical)]
-    public async Task CompareFileAsync(string file1, string file2, ExitCodes expected)
+    [DataRow("TestData/csv/People1.csv", "TestData/csv/People2.csv", WinmergeCliExitCodes.Different)]
+    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/Goodbye.cs", WinmergeCliExitCodes.Different)]
+    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/GreetingIdentical.cs", WinmergeCliExitCodes.Identical)]
+    public async Task CompareFileAsync(string file1, string file2, WinmergeCliExitCodes expected)
     {
         // Arrange
         Assert.That.FileExists(file1);
@@ -49,10 +49,10 @@ public partial class WinmergeCliTests
     }
 
     [TestMethod]
-    [DataRow("TestData/csv", "TestData/csv", ExitCodes.Identical)]
-    [DataRow("TestData/csv", "TestData/c#", ExitCodes.Different)]
-    [DataRow("TestData/c#", "TestData/c#", ExitCodes.Identical)]
-    public async Task CompareDirectoryAsync(string dir1, string dir2, ExitCodes expected)
+    [DataRow("TestData/csv", "TestData/csv", WinmergeCliExitCodes.Identical)]
+    [DataRow("TestData/csv", "TestData/c#", WinmergeCliExitCodes.Different)]
+    [DataRow("TestData/c#", "TestData/c#", WinmergeCliExitCodes.Identical)]
+    public async Task CompareDirectoryAsync(string dir1, string dir2, WinmergeCliExitCodes expected)
     {
         // Arrange
         Assert.That.DirectoryExists(dir1);
