@@ -7,6 +7,7 @@
     <AssemblyTitle>Dekoeky.AppBridge.Linux</AssemblyTitle>
     <AssemblyName>Dekoeky.AppBridge.Linux</AssemblyName>
     <RootNamespace>Dekoeky.AppBridge</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

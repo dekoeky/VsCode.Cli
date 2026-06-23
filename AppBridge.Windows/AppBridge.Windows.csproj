@@ -7,6 +7,7 @@
     <AssemblyTitle>Dekoeky.AppBridge.Windows</AssemblyTitle>
     <AssemblyName>Dekoeky.AppBridge.Windows</AssemblyName>
     <RootNamespace>Dekoeky.AppBridge</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

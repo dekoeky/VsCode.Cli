@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Dekoeky</Authors>
+    <Company>Dekoeky</Company>
+    <PackageProjectUrl>https://github.com/dekoeky/appbridge</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dekoeky/appbridge</RepositoryUrl>
+  </PropertyGroup>
+</Project>
