@@ -1,4 +1,3 @@
-using Dekoeky.AppBridge.TestData;
 using System.Runtime.Versioning;
 
 namespace Dekoeky.AppBridge;
@@ -24,28 +23,77 @@ public class VsCodeCliTests
         Assert.IsFalse(string.IsNullOrEmpty(installPath));
     }
 
-    [TestCategory("Explicit")]
     [TestMethod]
-    [LocalTestDataFile($"csv/people1.csv")]                                                 // Open 1 file
-    [LocalTestDataFile($"csv/people1.csv", $"csv/people2.csv")]                             // Open 2 files, same dir
-    [LocalTestDataFile($"csv/people1.csv", $"csv/people2.csv", "testfiles/csv/cars.csv")]   // Open 3 files, same dir
-    [LocalTestDataFile($"csv/people1.csv", $"c#/Greeting.cs")]                              // Open 2 files, different dir
-    [LocalTestDataFile($"csv")]                                                             // Open 1 directory
-    [LocalTestDataFile($"csv", $"c#")]                                                      // Open 2 directories
-    public void Open(params string[] paths)
+    [DataRow($"TestData/csv/people1.csv")]
+    public void OpenFile(string path)
     {
-        Console.WriteLine(string.Join(Environment.NewLine, paths));
+        // Arrange
+        EnsureTestFilesExist(path);
+
         // Act
-        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, paths);
+        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, path);
     }
 
     [TestMethod]
-    [LocalTestDataFile("csv/People1.csv", "csv/People2.csv")]
-    [LocalTestDataFile("c#/Greeting.cs", "c#/Goodbye.cs")]
-    public void Diff(string file1, string file2)
+    [DataRow($"TestData/csv/people1.csv", $"TestData/csv/people2.csv")]
+    [DataRow($"TestData/csv/people1.csv", $"TestData/c#/Greeting.cs")]
+    public void OpenTwoFiles(string path1, string path2)
+    {
+        // Arrange
+        EnsureTestFilesExist(path1, path2);
+
+        // Act
+        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, path1, path2);
+    }
+
+    [TestMethod]
+    [DataRow($"TestData/csv/people1.csv", $"TestData/csv/people2.csv", "TestData/csv/cars.csv")]
+    public void OpenThreeFiles(string path1, string path2, string path3)
+    {
+        // Arrange
+        EnsureTestFilesExist(path1, path2, path3);
+
+        // Act
+        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, path1, path2, path3);
+    }
+
+    [TestMethod]
+    [DataRow($"TestData/csv")]
+    public void OpenOneDir(string path1)
+    {
+        // Arrange
+        EnsureTestDirectoriesExist(path1);
+
+        // Act
+        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, path1);
+    }
+
+    [TestMethod]
+    [DataRow($"TestData/csv", "TestData/c#")]
+    public void OpenTwoDirs(string path1, string path2)
+    {
+        // Arrange
+        EnsureTestDirectoriesExist(path1, path2);
+
+        // Act
+        VsCodeCli.Open(VsCodeWindowOptions.NewWindow, path1, path2);
+    }
+
+    [TestMethod]
+    [DataRow("TestData/csv/People1.csv", "TestData/csv/People2.csv")]
+    [DataRow("TestData/c#/Greeting.cs", "TestData/c#/Goodbye.cs")]
+    public void DiffFiles(string path1, string path2)
     {
         // Act
-        VsCodeCli.Diff(file1, file2);
+        VsCodeCli.Diff(path1, path2);
+    }
+
+    [TestMethod]
+    [DataRow("TestData/csv", "TestData/c#")]
+    public void DiffDirectories(string path1, string path2)
+    {
+        // Act
+        VsCodeCli.Diff(path1, path2);
     }
 
     [TestMethod]
@@ -68,5 +116,17 @@ public class VsCodeCliTests
         // Assert
         Console.WriteLine(output);
         Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+    }
+
+    private static void EnsureTestFilesExist(params string[] paths)
+    {
+        foreach (var path in paths)
+            Assert.IsTrue(File.Exists(path), $"File does not exist: '{path}'");
+    }
+
+    private static void EnsureTestDirectoriesExist(params string[] paths)
+    {
+        foreach (var path in paths)
+            Assert.IsTrue(Directory.Exists(path), $"Directory does not exist: '{path}'");
     }
 }

@@ -148,7 +148,7 @@ public static class VsCodeCli
             VsCodeWindowOptions.ReUseWindow => VsCodeParameters.ReUseWindow,
         };
 
-        var total = options + arguments;
+        var total = options + ' ' + arguments;
 
         Process.Start(InstallPath, total);
     }
