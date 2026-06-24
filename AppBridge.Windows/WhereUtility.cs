@@ -6,8 +6,6 @@ namespace Dekoeky.AppBridge;
 [SupportedOSPlatform("windows")]
 public static class WhereUtility
 {
-    private static readonly char[] NewLineChars = ['\r', '\n'];
-
     public static WindowsWhereResult Find(
         string pattern,
         string? recursiveDir = null,
