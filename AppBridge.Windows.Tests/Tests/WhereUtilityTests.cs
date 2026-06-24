@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.Versioning;
 
 namespace Dekoeky.AppBridge.Tests;
@@ -18,11 +19,11 @@ public class WhereUtilityTests
     {
         // Act
         var result = WhereUtility.Find(pattern);
-        Console.WriteLine(string.Join(Environment.NewLine, result.Matches));
 
         // Assert
         Assert.IsTrue(result.Success);
         Assert.IsNull(result.Error);
         Assert.AreEqual(ExitCode.Successful, result.ExitCode);
+        foreach (var match in result.Matches) Debug.WriteLine(match);
     }
 }
